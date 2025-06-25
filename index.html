@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kyaa Website</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
+      margin: 0;
+      padding: 20px;
+    }
+
+  
+  .video-block {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeBounce 0.6s ease-out forwards;
+    animation-delay: var(--delay);
+    transition: all 0.3s ease;
+    position: relative;
+    will-change: transform, opacity;
+  }
+
+  @keyframes fadeBounce {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .container {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .container:hover .video-block:not(:hover) {
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+
+  .video-block:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(88,166,255,0.3);
+    z-index: 2;
+    opacity: 1 !important;
+    filter: blur(0) !important;
+  }
+
+    .loading-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 20px auto;
+  width: 100%;
+  text-align: center;
+}
+
+    .loading-dots span {
+      width: 10px;
+      height: 10px;
+      background-color: #58a6ff;
+      border-radius: 50%;
+      animation: bounce 1.5s infinite;
+    }
+
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+    }
+
+    #typewriter {
+  text-align: center;
+  color: #58a6ff;
+  font-size: 22px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #58a6ff;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+    .channel-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background-color: #161b22;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.left-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.discord-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.discord-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.join-discord {
+  background-color: #5865F2;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.join-discord:hover {
+  background-color: #4752c4;
+}
+
+    .channel-info img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+    }
+
+    .channel-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .display-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #58a6ff;
+    }
+
+    .username {
+      font-size: 14px;
+      color: #8b949e;
+    }
+
+    .subscribers {
+      font-size: 13px;
+      color: #8b949e;
+    }
+
+    h1 {
+      text-align: center;
+      color: #58a6ff;
+    }
+
+.search-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#searchInput {
+  width: 80%;
+  max-width: 500px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+  background-color: #161b22;
+  color: #c9d1d9;
+}
+
+#searchInput::placeholder {
+  color: #8b949e;
+}
+
+    .video-block {
+      background-color: #161b22;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      padding: 20px;
+    }
+
+    .video-block h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #58a6ff;
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    .code-box {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 15px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  position: relative;
+  color: #c9d1d9;
+  overflow: auto;
+  word-wrap: break-word;
+}
+
+    .copy-button {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background-color: #21262d;
+      color: #c9d1d9;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background-color 0.2s;
+    }
+
+    .copy-button:hover {
+      background-color: #30363d;
+    }
+
+    @media (max-width: 600px) {
+      iframe {
+        height: 200px;
+      }
+
+      .channel-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- profile info rizzz -->
+  <div class="channel-info">
+  <div class="left-info">
+    <img id="channel-avatar" src="https://yt3.googleusercontent.com/ooj4K_jUl35m7Z6TfGqCXPIQ1SS90cSp7KtqHmFpmW5v_OmqNRjHxi9eZTxzyE7LzC159GyYVg=s160-c-k-c0x00ffffff-no-rj " alt="Avatar">
+    <div class="channel-text">
+      <div class="display-name" id="channel-title">Kyaa</div>
+      <div class="username" id="channel-username">@kyaanguyen</div>
+      <div class="subscribers" id="channel-subscribers">86+ Subscriber</div>
+    </div>
+  </div>
+  <div class="discord-link">
+    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="discord-icon">
+    <a href="https://discord.gg/kymU65UvNb" target="_blank" class="join-discord">Join My Discord</a>
+  </div>
+</div>
+
+<div class="loading-dots">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <h2 id="typewriter"></h2>
+
+  <h1>Cool Script Here</h1>
+
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search script..." onkeyup="searchScripts()">
+</div>
+<div id="noResults" style="text-align:center; display:none; color:#c9d1d9;">No results. </div>
+
+  <div class="container">
+
+<!-- PINNED -->
+    <div class="video-block" data-index="0">
+  <h2>[📌PINNED] Kyaa Hub | All Script In ONE</h2>
+  <div class="code-box">
+    <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+    -- THIS ONLY LOAD MY SCRIPT
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Khoaispr0123/Script/refs/heads/main/KyaaHub-AllInOne.lua"))()
+  </div>
+</div>
+
+
+<!--  Video 1 -->
+    <div class="video-block" data-index="1">
+      <h2>[🔥NEW] Saryn Hub | Forsaken Script</h2>
+      <h1>🎥❌ Oops! No video this time, sorry.</h1>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/Saiky988/Saryn-Hub/refs/heads/main/Saryn%25Hub%25Beta.lua'))()
+      </div>
+    </div>
+
+
+<!--  Video 2 -->
+    <div class="video-block" data-index="2">
+      <h2>[🔥NEW] Power Slap Simulator Script</h2>
+      <iframe src="https://www.youtube.com/embed/biL2j8kTWzY" allowfullscreen></iframe>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Khoaispr0123/Script/main/KyaaHubDZ-PowerSlapSim.lua"))()
+      </div>
+    </div>
+
+
+<!--  Video 3 -->
+    <div class="video-block" data-index="3">
+      <h2>[🔥NEW] Dig The Hole Script</h2>
+      <iframe src="https://www.youtube.com/embed/IbcYoRt-uA4" allowfullscreen></iframe>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Khoaispr0123/Script/refs/heads/main/KyaaDepZaiVC-DigTheHole.lua"))()
+      </div>
+    </div>
+
+<!-- Video 4 -->
+    <div class="video-block" data-index="4">
+      <h2>[🔥NEW] Fish Training Script</h2>
+      <iframe src="https://www.youtube.com/embed/gmB2FdOfjsk" allowfullscreen></iframe>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Khoaispr0123/Script/refs/heads/main/KyaaDepZai-Fish-Training.lua"))()
+      </div>
+    </div>
+
+<!-- Video 5 -->
+    <div class="video-block" data-index="5">
+      <h2>[🔥NEW] Shoot Race Simulator Script</h2>
+      <iframe src="https://www.youtube.com/embed/QX5xebBN_Lo" allowfullscreen></iframe>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+        -- Credit to Aliframadi Script
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AliframadiRealYT/AliframadiScriptYT/refs/heads/main/Shoot%20Race%20Simulator%20Script"))()
+      </div>
+    </div>
+
+<!-- Video 6 -->
+    <div class="video-block" data-index="6">
+      <h2>[🔥NEW] Brainrot Evolution Script</h2>
+      <iframe src="https://www.youtube.com/embed/jPsCDv-eCMo" allowfullscreen></iframe>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/refs/heads/main/BrainrotEvolution"))()
+      </div>
+    </div>
+
+    <!-- Video 7 -->
+    <div class="video-block" data-index="7">
+      <h2>[🔥NEW] Dig To The Earth's Core Script</h2>
+      <iframe src="https://www.youtube.com/embed/dNU7EmaxrDE" allowfullscreen></iframe>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Khoaispr0123/Script/refs/heads/main/KyaaHub.lua"))()
+      </div>
+    </div>
+
+    <!-- Video 8 -->
+    <div class="video-block" data-index="8">
+      <h2>[🔥NEW] Math Murder Script</h2>
+      <iframe src="https://www.youtube.com/embed/0F3Dw3_WiQc" allowfullscreen></iframe>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+        -- Script Math Murder:
+getgenv().language = "en" -- support language: vie,en,rus,jap
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Khoaispr0123/Script/refs/heads/main/KyaaHub-MathMurder.lua"))()
+      </div>
+    </div>
+
+    <!-- Video 9 -->
+    <div class="video-block" data-index="9">
+      <h2>[🔥NEW] Arise Crossover Script</h2>
+      <iframe src="https://www.youtube.com/embed/GaYeK_FwZhw" allowfullscreen></iframe>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ZhangJunZ84/twvz/refs/heads/main/arisecrossover.lua"))()
+      </div>
+    </div>
+
+    <!-- Video 10 -->
+    <div class="video-block" data-index="10">
+      <h2>[🔥NEW] Drill Digging Simulator</h2>
+      <iframe src="https://www.youtube.com/embed/04ynEHers_E" allowfullscreen></iframe>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+        -- Credit: @ToraIsMe
+loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/DrillDigging"))()
+      </div>
+    </div>
+
+    <!-- Video 11 -->
+    <div class="video-block" data-index="11">
+      <h2>[🔥NEW] OP Fling Script</h2>
+      <iframe src="https://www.youtube.com/embed/Q51OEYrhWtc" allowfullscreen></iframe>
+      <div class="code-box">
+        <button class="copy-button" onclick="copyCode(this)">Copy code</button>
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Khoaispr0123/FlingScript/refs/heads/main/ILoveU.lua"))()
+      </div>
+    </div>
+
+
+<footer>
+© 2025 Kyaa. All rights reserved.
+</footer>
+
+
+  </div>
+
+  <script>
+  
+  window.addEventListener("DOMContentLoaded", () => {
+    const videoBlocks = document.querySelectorAll(".video-block");
+    videoBlocks.forEach((block, index) => {
+
+      block.style.setProperty('--delay', `${index * 0.2}s`);
+      
+      block.setAttribute('data-index', index);
+    });
+  });
+
+const messages = [
+  "Welcome to My Website!",
+  "Explore the latest scripts!",
+  "Join our Discord community!",
+  "Stay tuned for epic updates!",
+  "Enjoy the content, legends!",
+  "Subscribe for more awesome videos!",
+  "Don't forget to like and share!",
+  "Check out our new tutorials!",
+  "Follow us on social media for updates!",
+  "Leave a comment and let us know what you think!",
+  "Get ready for some awesome giveaways!",
+  "Thank you for your support, you're amazing!",
+  "Catch up with the latest streams on our channel!",
+  "We're just getting started, stay with us!",
+  "Help us reach new milestones, subscribe now!",
+  "New content dropping every week, stay tuned!"
+];
+
+    let i = 0, j = 0;
+    const speed = 100;
+    const typewriterElement = document.getElementById("typewriter");
+
+    function typeWriter() {
+      if (j < messages[i].length) {
+        typewriterElement.textContent += messages[i][j];
+        j++;
+        setTimeout(typeWriter, speed);
+      } else {
+        setTimeout(() => {
+          typewriterElement.textContent = "";
+          j = 0;
+          i = (i + 1) % messages.length;
+          typeWriter();
+        }, 2000);
+      }
+    }
+
+    typeWriter();
+
+
+function searchScripts() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const blocks = document.querySelectorAll(".video-block");
+  let hasResults = false;
+
+  blocks.forEach(block => {
+    const text = block.innerText.toLowerCase();
+
+    if (text.includes("📌pinned")) {
+      block.style.display = "block";
+    } else if (text.includes(input)) {
+      block.style.display = "block";
+      hasResults = true;
+    } else {
+      block.style.display = "none";
+    }
+  });
+
+  document.getElementById("noResults").style.display = hasResults || input === "" ? "none" : "block";
+}
+
+
+    function copyCode(btn) {
+      const code = btn.parentElement.innerText.replace("Copy code", "").trim();
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = "Copy code", 1500);
+      });
+    }
+  </script>
+
+</body>
+</html>

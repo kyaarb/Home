@@ -13,6 +13,26 @@
       padding: 20px;
     }
 
+.outdated-notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ff4d4d;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 9999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.outdated-notice .click-link {
+  color: #add8ff;
+  text-decoration: underline;
+  font-weight: bold;
+}
   
   .video-block {
     opacity: 0;
@@ -268,6 +288,10 @@
   </style>
 </head>
 <body>
+
+<div class="outdated-notice">
+  This website is outdated and no longer receives updates. You can still view old scripts, but we will not upload new videos. Please check our YouTube channel by <a href="https://youtube.com/yourchannel" class="click-link">clicking this</a>.
+</div>
 
   <!-- profile info rizzz -->
   <div class="channel-info">
